@@ -1,0 +1,4 @@
+{
+  "lazy.nvim": { "branch": "main", "commit": "5f13f69851d2b244891d77590db9e3370197facc" },
+  "tokyonight.nvim": { "branch": "main", "commit": "3d2f79cd1f3cea7520d5cc4d06c8010fe2592db8" }
+}
