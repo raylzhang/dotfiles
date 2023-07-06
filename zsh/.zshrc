@@ -5,8 +5,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+# If you come from bash you might have to change your $PATH.
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/raylzhang/.oh-my-zsh"
@@ -79,6 +79,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  vi-mode
   zsh-autosuggestions
   zsh-syntax-highlighting
   autojump
@@ -114,12 +115,13 @@ source $ZSH/oh-my-zsh.sh
 
 alias lls="ls --color -lAFht"
 alias ll="ls --color -lAFht | less"
+alias t="tree -a "
 alias vim="nvim"
 alias vi="nvim"
 alias v="nvim"
 alias c="code"
 
-# alias ws='cd ~/tech-prj/app/src'
+alias gh='cd ~'
 alias df='cd ~/.dotfiles'
 alias ni='cd ~/.config/nvim/lua'
 alias ob='cd ~/sft-ob/Ray'
@@ -127,7 +129,7 @@ alias vc='cd /Users/raylzhang/Library/Application\ Support/Code/User'
 alias ri='cd /Users/raylzhang/Library/Rime'
 
 # 清理.DS_Store文件
-alias cleands='sudo find ~ -name ".DS_Store" -depth -exec rm {} \;'
+alias cleands='sudo find / -name ".DS_Store" -type f -exec rm -f {} \; -print 2>/dev/null'
 
 # docker
 alias dlogs='docker logs -tf --tail 200'
@@ -135,12 +137,19 @@ alias dlogs='docker logs -tf --tail 200'
 # 查看进程占用程序
 alias pexe='lsof -a -d txt -Fn -p'
 
+# 查找
+alias rfind='sudo sh /Users/raylzhang/script/rfind.sh'
+
+# 项目脚本
+raysite='/Users/raylzhang/prj-ray/raylzhang-hexo'
+alias dpray='python $raysite/deploy.py'
+
 #### Manual Configuration Area ####
 
 ## p10k theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet # 关闭每次打开的提示
 
 ## brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -163,11 +172,14 @@ bindkey -s '^o' 'lfcd\n'
 #bindkey -s '^g' 'lazygit\n'
 
 ## clash
-alias proxy="export https_proxy=http://127.0.0.1:7890;export http_proxy=http://127.0.0.1:7890;export all_proxy=socks5://127.0.0.1:7890;echo \"Set proxy successfully!\""
-alias unproxy="unset https_proxy;unset http_proxy;unset all_proxy;echo\"Unset proxy successfully!\""
+# clashx pro
+alias proxy="export https_proxy=http://127.0.0.1:50169 http_proxy=http://127.0.0.1:50169 all_proxy=socks5://127.0.0.1:50169;echo \"Set proxy successfully!\""
+# clashx
+#alias proxy="export https_proxy=http://127.0.0.1:7890;export http_proxy=http://127.0.0.1:7890;export all_proxy=socks5://127.0.0.1:7890;echo \"Set proxy successfully!\""
+alias unproxy="unset https_proxy;unset http_proxy;unset all_proxy;echo \"Unset proxy successfully!\""
 alias ipcn="curl myip.ipip.net"
 alias ip="curl ip.sb"
-proxy
+unproxy
 
 ## java
 alias jdk8="export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home"
@@ -232,3 +244,4 @@ export PATH="/opt/homebrew/opt/python@3.11/libexec/bin:$PATH"
 
 ## idea
 export PATH="/Applications/IntelliJ IDEA.app/Contents/MacOS:$PATH"
+
